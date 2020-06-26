@@ -1,4 +1,5 @@
 
+
 class Node:
     def __init__(self, data):
         self.left = None
@@ -21,25 +22,46 @@ def inorder_traversal(root):
         print(root.data)
         inorder_traversal(root.right)
 
+
 #Time complexity O(n)
 #Space complexity O(1)
 def postorder_traversal(root):
-    if(root):
+    if root:
         postorder_traversal(root.left)
         postorder_traversal(root.right)
         print(root.data)
 
-#Time complexity O(n2)
-#Space complexity O(n)
+
+# Time complexity O(n2)
+# Space complexity O(n)
 def levelorder_traversal(root):
     h = height(root)
-    for i in range(1,h+1):
-        printGivenLevel(root,i)
+    for i in range(1, h+1):
+        printGivenLevel(root, i)
 
-#Time complexity O(n)
-#Space complexity O(1)
+# Using queue
+# Time complexity O(n)
+# Space complexity O(n)
+def printLevelOrder(root):
+    if root is None:
+        return
+
+    queue = []
+    queue.append(root)
+    print('Level order traversal by queue: ')
+    if  len(queue)>0 :
+        print(queue[0].data)
+        node = queue.pop[0]
+        if node.left is not None:
+            queue.append(node.left)
+        if node.right is not None:
+            queue.append(node.right)
+
+
+# Time complexity O(n)
+# Space complexity O(1)
 def printGivenLevel(root, level):
-    #print level
+
     if root is None:
         return
     if level == 1:
@@ -60,20 +82,24 @@ def height(root):
     else:
         return lheight+1
 
+
 root = Node(1)
 root.left = Node(2)
 root.right = Node(3)
 root.left.right = Node(4)
 root.left.left = Node(5)
 
-print "Pre order Traversal of tree is"
+print("Pre order Traversal of tree is")
 preorder_traversal(root)
 
-print "In order Traversal of tree is"
+print("In order Traversal of tree is")
 inorder_traversal(root)
 
-print "Post order Traversal of tree is"
+print("Post order Traversal of tree is")
 postorder_traversal(root)
 
-print "Level order Traversal of tree is"
+print("Level order Traversal of tree is")
 levelorder_traversal(root)
+
+print("print level order")
+printLevelOrder(root)
